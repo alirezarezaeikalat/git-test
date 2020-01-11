@@ -1,0 +1,3 @@
+1- for choosing name and email address:
+git config --global user.name [alireza]
+git config --global user.email [alireza.rezaeikalat@gmail.com]
