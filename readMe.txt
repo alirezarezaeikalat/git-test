@@ -186,4 +186,14 @@ now you can delete the branch locally:    <pay attention to the locally>
 
                                                       git clean -df       (-d for directory and -f for files)
 
+
+22. if you remove the commit using git reset --hard you can still access the deleted commit: 
+
+      a. first get the hash code of the deleted commit: 
+
+          git reflog
+      
+      b. then go to the deleted commit in detached head:
+
+          git checkout <the deleted commit id>      (now you are in the detached head)
     
