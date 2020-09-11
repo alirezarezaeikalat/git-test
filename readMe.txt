@@ -1,92 +1,189 @@
-1. <!--!!! to make git repository -->
-  <!-- git init-->
+0. make your global config:
+    git config --global user.name "Alireza Rezaei"
+    git config --global user.email "alireza.rezaeikalat@gmail.com"
+    git config --list
 
-2. <!--!!! to see the status of files: -->
-  <!-- git status -->
+    git <verb> --help       : git config --help
 
-3. <!--!!! to discard changes in working directory-->
-  <!-- git restore <filename>-->
+1. to make git repository
+      <!-- git init-->
 
-4. <!--!!! to add to stage area -->
-  <!-- git add <index.html> -->
+2. to see the status of files:
+      <!-- git status -->
+      <!-- git diff -->   (you can see the changes by this command)
 
-5. <!--!!! to remove from stage area -->
-  <!-- git rm --cached <index.html> -->
+3. to discard changes in working directory
+      <!-- git restore <filename>-->
 
-6. <!--!!! to see the commit history-->
-  <!-- git commit -m '<description>' -->
+4. to add to stage area
+      <!-- git add <index.html> -->
+  to add all the files to staging area
+      <!-- git add -A -->
 
-7. <!--!!! to see the commit history-->
-  <!-- git log -->
-  <!-- git log -oneline -->
+5. to remove from stage area
+      <!-- git rm --cached <index.html> -->
+  
+  or
+      <!-- git reset <filename> -->
+  to remove all the files from staging area-->
+      <!-- git reset -->
 
-8. <!--!!! to go back in time in read only mode-->
-  <!-- git checkout <commit id>-->
+6. to commit
+      <!-- git commit -m '<description>' -->
+
+7. to see the commit history
+      <!-- git log -->
+      <!-- git log -oneline -->
+
+8. to go back in time in read only mode
+      <!-- git checkout <commit id that you want go to>-->
 
 9. <!--!!! to make a new commit and undo particular one -->
-  <!-- git revert <commit id>-->
+      <!-- git revert <commit id>-->
 
-10. <!--!!! to go to special commit and delete the after ones but the changes is visible in editor -->
+10. to go to special commit and delete the after ones but the changes is visible in editor:
     
-  a. <!-- git reset <commit id>-->
-  <!--!!! to reset and remove the changes from editor-->
-    b. <!-- git reset <commit id> --hard -->
+        a. <!-- git reset <commit id that you want go to> -->
 
-11. <!--!!! to make a new branch -->
-    <!-- git branch <branch name>-->
+    to reset and remove the changes from editor:
+        b. <!-- git reset <commit id that you want go to> --hard -->
 
-12. <!--!!! to delete the branch first switch to master branch then: -->
-    <!-- git branch -d <branch name>-->
+11. to make a new branch 
+      <!-- git branch <branch name>-->
 
-13. <!--!!! to see the tree of files -->
-    <!--!!! (*) shows the current branch -->
-    <!-- git branch -a -->
+12. to delete the branch first switch to master branch then:
+      <!-- git branch -d <branch name>-->
 
-14. <!--!!! to go to branches-->
-    <!-- git checkout <branch name>-->
+13. to see the tree of files 
+    (*) shows the current branch 
+      
+          <!-- git branch -a -->
+        or 
+    to see all branches locally 
+          <!-- git branch -->
 
-15. <!--!!! to merge the branch to master branch-->
-    <!--!!! first you have to go to master branch-->
-    <!-- git merge <name of the branch> -->
+14. to go to branches
+      <!-- git checkout <branch name>-->
 
-    <!-- !!! if you have the conflict first remove the comments -->
-    <!-- !!! then commit with -->
-      a. <!-- git add . -->
-      b. <!-- git commit -->
-    
-    <!-- !!! to quit -->
+15. to merge the branch to master branch 
+ 
+    first you have to go to master branch 
+        <!-- git checkout master -->
+
+    you can see all the merged branch
+        <!-- git branch --merged -->
+
+    Then you can merge
+        <!-- git merge <name of the branch that you want to merge to master> -->
+
+    if you have the conflict first remove the comments 
+    then commit with: 
+        a. <!-- git add . -->
+        b. <!-- git commit -->
+      
+    to quit
       a. <!-- shift + : -->
       b. <!-- wq -->
 
-16. <!-- !!! to push to the remote repository -->
+16. to push to the remote repository
 
-    <!-- !!! first commite the changes in your local repository -->
-      a. <!-- git add . -->
-      b. <!-- git commit <description> -->
+    first commite the changes in your local repository
+        a. <!-- git add . -->
+        b. <!-- git commit -m <description> -->
 
-    <!-- !!! to push -->
-      a. <!-- git push <url or origin name> <branch to push> -->
+    to push
+        a. <!-- git push <url or origin name> <branch to push> -->
 
-17. <!-- !!! to make alias for the url of the remote repository -->
-  <!-- git remote add <alias> <url> -->
+17. to make alias for the url of the remote repository 
+        <!-- git remote add <alias> <url> -->
   
-  <!-- !!! to see the alias name -->
-    <!-- git remote -v -->
+    to see the alias name
+        <!-- git remote -v -->
 
-18. <!-- !!! to clone the repository -->
-  <!-- git clone <url> -->
-  <!-- !!! and also makes origin alias -->
-
-
+18. to clone the repository
+        <!-- git clone <url> <where to clone> -->
+        <!-- !!! and also makes origin alias -->
 
 
-19. <!-- !!! Working in the team -->
-  <!-- !!! first update your local repo -->
-  <!-- git pull origin master -->
+//////////////// a common workflow for working in the team //////////
+19. Working in the team
+    first update your local repo
+        <!-- git pull origin master -->
 
-  <!-- !!! then make a new branch to make changes in that branch -->
-  <!-- !!! push the new branch to remote repo -->
-    <!-- git push origin <branch name> -->
+  then make a new branch to make changes in that branch
+        <!-- git branch <branch name> -->
+        <!-- git checkout <branch name> -->
+  after your changes push the new branch to remote repo 
+        <!-- git push -u origin <branch name> -->
 
-  <!-- !!! Then make pull request to merge it to master branch in github site -->
-  <!-- !!! Then the manager can accept the changes -->
+  Then make pull request to merge it to master branch in github site
+  Then the manager can accept the changes 
+
+if you have the permission to push the master branch: 
+
+  after accepting the branch, you can merge the branch locally 
+  go to master branch
+    <!-- git checkout master -->
+    <!-- git pull origin master -->
+
+  merge the branch
+    <!-- git merge <branch name> -->
+
+  now push the master branch 
+    <!-- git push origin master -->
+
+now you can delete the branch locally:    <pay attention to the locally>
+
+  deleting the branch 
+    git branch -d <branch name>
+
+  but if you see the branches the remote branch is still there 
+    <!-- git branch -a -->
+  
+  to delete the branch on remote repository 
+    <!-- git push origin --delete <branch name> -->
+
+//////// fixing mistakes in git //////////
+
+20. if you add a commit with wrong message, you can change the commit message of the last one:  
+
+    git commit --amend -m 'new message'     but in this way you will change the commit hash
+
+    git commit --amend                      for example if you left a file from commit first add it then use --amend 
+                                            (and the commit hash will be different)
+
+
+    (so do this, if you haven't push your commit to the remote repository)
+
+  
+21. if you commit to a wrong branch, you can add the commit to the right branch and remove the commit from the wrong branch:
+
+    a. first get the commit hash from the wrong branch:
+
+          git log     (then copy the id)
+    
+    b. then go to the right branch: 
+
+          git checkout <right branch name>
+    
+    c. copy the commit to the right branch:
+
+          git cherry-pick <commit id>
+
+    d. delete the commit on the wrong branch:
+
+        git checkout <wrong branch>
+        git reset --soft <the previous commit id>     --soft  reset the changes but keep the changes in the staging area
+
+
+        git reset <the previous commit id>            --mixed this is the default one, reset the changes and remove from the staging
+                                                      area but keep it in the editor
+        
+        git reset --hard <the previous commit id>     --hard removes the changes and remove it from staging area and the editor as well
+                                                      but it will not removed the untacked files, for example if you add another file
+                                                      that is not in the commit that you reset to. so you have to delete this file 
+                                                      manually or use another instruction:
+
+                                                      git clean -df       (-d for directory and -f for files)
+
+    
