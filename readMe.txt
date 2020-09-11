@@ -196,4 +196,7 @@ now you can delete the branch locally:    <pay attention to the locally>
       b. then go to the deleted commit in detached head:
 
           git checkout <the deleted commit id>      (now you are in the detached head)
-    
+
+      c. then make new branch to save attach head to this     (cat .git/HEAD)
+
+          git checkout -b <your new branch name>
