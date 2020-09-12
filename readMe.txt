@@ -39,7 +39,7 @@
       <!-- git checkout <commit id that you want go to>-->
 
 9. <!--!!! to make a new commit and undo particular one -->
-      <!-- git revert <commit id>-->
+      <!-- git revert <commit id that you want to undo>-->
 
 10. to go to special commit and delete the after ones but the changes is visible in editor:
     
@@ -200,3 +200,88 @@ now you can delete the branch locally:    <pay attention to the locally>
       c. then make new branch to save attach head to this     (cat .git/HEAD)
 
           git checkout -b <your new branch name>
+
+      d. then if you want, merge the branch to the master branch:
+
+          git checkout master
+          git merge <branch name> 
+
+
+23. if you are in a situation that you push your commits, and other people pull your commits, it is not good practise to change the 
+      git history by using reset or ammend, in this situations you can use revert: 
+
+          git revert <commit id that you want ro revert>
+
+
+/////////// using git stash ////////////
+
+24. if you want to remove your changes temporary before commit, and can get them back, when you want, you can use: 
+
+        git stash save "your message"
+
+25. you can get the list of stashes:
+
+        git stash list
+
+26. you can reapply the stash: 
+
+        git stash apply <stash@{0}>             // but the stash is still in the stash list
+
+        git stash pop                        // get the latest stash and remove it from stash list
+
+26. remove the stash from stash list
+
+        git stash drop <stash@{0}>
+
+27. to remove all the stashes:  
+
+        git stash clear
+
+[ATTENTION]
+28. using stash is a good way, to fixed the common error when you make changes on the wrong branch: 
+
+        a. you make changes to wrong branch but you haven't commit it, but when you want to change your branch, you will get an 
+            error that is you have uncommited change, so you can stash your changes: 
+
+                git stash save "wrong change in the master branch"
+
+        b. go to the branch that is right: 
+
+                git checkout <branch name>
+
+        c. apply the stash: 
+
+                git stash pop
+
+
+/////////// using diff merge tool ////////
+
+29. first download DiffMerge
+
+30. config your git for gitmerge:
+
+        git config --global diff.tool diffmerge
+        git config --global difftool.diffmerge.cmd 'diffmerge "$LOCAL" "$REMOTE"'
+        git config --global merge.tool diffmerge
+        git config --global mergetool.diffmerge.cmd 'diffmerge --merge --result="$MERGED" "$LOCAL" "$(if test -f "$BASE"; then echo "$BASE"; else echo "$LOCAL"; fi)" "$REMOTE"'
+        git config --global mergetool.diffmerge.trustExitCode true
+
+31. opening difftool:
+
+        git difftool
+
+
+32. you can use merge tool:
+
+        git mergetool
+
+
+//// different between git add //////////
+
+33. git add -A          (it is going to add all the modified files, deleted files, and new files in all tree of files)
+
+    git add -A mydir/       (only in the mydir folder) (git add -A is the default behavior for git)
+
+    git add -u          (add only modified and deleted files not new files in all tree)
+
+    git add .           (add all the files in current directory, because the default behavior is -A)
