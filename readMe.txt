@@ -113,6 +113,7 @@
   then make a new branch to make changes in that branch
         <!-- git branch <branch name> -->
         <!-- git checkout <branch name> -->
+
   after your changes push the new branch to remote repo 
         <!-- git push -u origin <branch name> -->
 
@@ -285,3 +286,63 @@ now you can delete the branch locally:    <pay attention to the locally>
     git add -u          (add only modified and deleted files not new files in all tree)
 
     git add .           (add all the files in current directory, because the default behavior is -A)
+
+
+///////////// using tags in git ////////////
+
+34. Git has the ability to tag specific points in a repository’s history as being important. Typically, people use this
+     functionality to mark release points (v1.0, v2.0 and so on). working with tags are just like working with branches
+
+    a. list all the tags:
+
+            git tag   (optional -l or --list)
+    
+    b. list tags with special pattern:
+
+            git tag -l "v1.8.5*"
+    
+    c. creating annotated tag:
+
+        git tag -a v1.4 -m 'my version 1.4'
+
+        see the tag information:
+
+            git show v1.4
+
+                tagger: ...
+                date: ....
+        
+    d. create lightweight tag:
+
+        git tag v.14
+
+        see the tag:
+            git show v.14
+    
+    e. tagging later (you can tag older commits)
+
+        git tag -a v1.3 <commit id>
+    
+
+    f. after making tags, you have to push tags to remote servers, like branches:
+
+        git push origin <tag name>
+
+        to push all your tags:
+
+        git push origin --tags
+    
+    g. deleting tags;
+        
+        git tag -d <tag name>
+
+        delete on the remote server:
+
+            git push origin --delete <tag name>
+    
+    h. to check out to the tag
+
+        git checkout <tagname>
+
+        but in this situation you are in the detach head, so you have to make new branch to save your commits
+    
