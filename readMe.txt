@@ -84,6 +84,21 @@
     to quit
       a. <!-- shift + : -->
       b. <!-- wq -->
+    
+    [ATTENTION]
+    We have two types of merge:
+
+        a. fast forward merge: It just change the current branch tip to -F and combines histories of two branch 
+
+                            -D - E -F 
+                A - B - C 
+        
+        b. three way merge (git uses 3 commits to generate the merge commit- head of two branch and common ancestor)
+    
+    [ATTENTION]
+    If you are in the middle of merge, you stop it completely:
+
+        git merge --abort
 
 16. to push to the remote repository
 
